@@ -8,7 +8,6 @@ variable "instance_count" {
     default = 0
 }
 
-
 variable "agent_count" {
     default = 8
 }
@@ -45,4 +44,21 @@ variable log_analytics_workspace_location {
 # refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing 
 variable log_analytics_workspace_sku {
     default = "PerGB2018"
+}
+
+variable "virtual_network_name" {
+  description = "Virtual network name"
+  default     = "aksVirtualNetwork"
+}
+
+variable "virtual_network_address_prefix" {
+  default     = "10.0.0.0/8"
+}
+
+variable "aks_subnet_name" {
+  default     = "kubesubnet"
+}
+
+variable "aks_subnet_address_prefix" {
+  default     = "10.240.0.0/16"
 }
