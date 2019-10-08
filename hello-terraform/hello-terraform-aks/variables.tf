@@ -1,8 +1,16 @@
+# execute the following with specified SP details to set these variables:
+# export TF_VAR_client_id=
+# export TF_VAR_client_secret=
 variable "client_id" {}
 variable "client_secret" {}
 
+variable "instance_count" {
+    default = 0
+}
+
+
 variable "agent_count" {
-    default = 3
+    default = 8
 }
 
 variable "ssh_public_key" {
