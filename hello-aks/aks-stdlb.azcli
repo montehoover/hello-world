@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+az aks create \
+    --resource-group rg \
+    --name stdlb \
+    --vm-set-type VirtualMachineScaleSets \
+    --node-count 1 \
+    --load-balancer-sku standard \
+    --generate-ssh-keys
