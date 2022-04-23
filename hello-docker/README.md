@@ -100,4 +100,4 @@ Steps for using docker containers as a dev environment in WSL.
 
     ![](2022-04-23-16-16-30.png)
 
-10. 
+10. For how to create a docker image, see [hello-dockerfile](hellod-dockerfile/README.md).
