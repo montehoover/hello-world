@@ -2,19 +2,18 @@
 
 1. In the root folder of your project, create a file named `Dockerfile` with no file extention. Add the following lines:
     ```bash
-    # Base image
-    FROM node:12-alpine
-    # Run a bash command to install system dependencies
-    # Adding build tools to make yarn install work on Apple silicon / arm64 machines
-    RUN apk add --no-cache python2 g++ make
-    # Create the following directory in the docker image and cd into it for future commands
-    WORKDIR /app
-    # Copy from pwd on host machine (first dot) into pwd in image (second dot)
+    # Base image to build on top of
+    FROM ubuntu:20.04
+    # Create a new directory and cd into for future commands
+    WORKDIR /new_dir
+    # This is a weird convention, but the first dot is pwd (/.../hello_dockerfile) on the host machine and
+    # the second dot is pwd in the docker image (/new_dir)
     COPY . .
-    # Run a bash command during the image build process
-    RUN yarn install --production
-    # The bash command to run once the container starts
-    CMD ["node", "src/index.js"]
+    # Run any arbitrary bash commands. Note the commands are run as root so you don't have to use sudo
+    RUN apt-get update && apt-get install tree -y
+    RUN echo "hello from new.txt" > new.txt
+    # The bash command to run when the container is launched
+    CMD pwd && tree && cat hello.txt && cat new.txt
 
     ```
 
@@ -31,7 +30,7 @@
     $
     ```
 
-3. List the docker images that are present locally and you will see the image `getting-started` that you 
+3. List the docker images that are present locally and you will see the image `hello-dockerfile` that you just made:
     ```
     $ docker image ls
     REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
@@ -41,10 +40,19 @@
     hello-world              latest    feb5d9fea6a5   7 months ago   13.3kB
     ```
 
-4. Now you can run a container based on the image you created:
+4. Now you can run a container based on that image:
     ```
-    $ docker run -dp 3000:3000 hello-dockerfile
-    b2bcbec33aa5bdc78badae655584a2660e9785da216170fc52f46f0a42811599
+    $ docker run hello-dockerfile
+    /new_dir
+    .
+    |-- Dockerfile
+    |-- README.md
+    |-- hello.txt
+    `-- new.txt
+
+    0 directories, 4 files
+    hello world
+    hello from new.txt
     ```
 
 5. Push the image to Docker Hub:
