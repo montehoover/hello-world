@@ -91,4 +91,6 @@
         4fc242d58285: Mounted from library/node
         latest: digest: sha256:7bfcda82400bca73764bce3ded066a562569ffad68924af2b789c538b51274bc size: 2000
         ```
+
+6. For how to add link a container to local files, see [hello-docker-volumes](../hello-docker-volumes/README.md).
     
