@@ -1,3 +1,11 @@
+# Workflow for developing in a docker container:
+
+1. Git pull (repo includes dockerfile)
+2. Docker build (based on that dockerfile)
+3. Docker run (and bind the repo you're in to the docker container)
+4. Install conda/pip dependencies in container from environment.yml or pip
+5. Run demo code from repo
+
 # Setup Deep Geometric Prior in docker container
 
 1. apt update
