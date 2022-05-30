@@ -2,8 +2,13 @@ import numpy as np
 from tensorflow import keras
 from tensorflow.keras import models, layers
 
-# 5-layer MLP with BatchNorm and Dropout.
+# A good resource is here: https://www.tensorflow.org/tutorials/images/cnn
+
+EPOCHS = 10
+BATCH_SIZE = 128
+
 def mlp(input_shape, num_classes):
+    """5-layer MLP with BatchNorm and Dropout."""
     model = models.Sequential([
         layers.Input(shape=input_shape),
         layers.Flatten(),
@@ -36,8 +41,8 @@ def mlp(input_shape, num_classes):
     )
     return model
 
-# Standard CNN based off the VGG-16 architecture
 def cnn(input_shape, num_classes):
+    """Standard CNN based off the VGG-16 architecture."""
     model = models.Sequential([
         layers.Input(shape=input_shape),
         layers.Conv2D(filters=64, kernel_size=(3, 3), padding='same', kernel_initializer='he_normal'),
@@ -93,12 +98,12 @@ def train(model, data, load_from_weights=False, ):
         (X_train, y_train), (X_test, y_test) = data
         history = model.fit(x=X_train, y=y_train, 
                             validation_data=(X_test, y_test), 
-                            batch_size=128, epochs=10, verbose=2)
+                            batch_size=BATCH_SIZE, epochs=EPOCHS, verbose=2)
     model.save_weights('cnn.h5')
     return model, history
 
 def get_data(dataset):
-    if dataset == 'cfar10':
+    if dataset == 'cifar10':
         (X_train, y_train), (X_test, y_test) = keras.datasets.cifar10.load_data()
 
     elif dataset == 'mnist':
@@ -125,8 +130,9 @@ if __name__ == '__main__':
     data, input_shape, num_classes = get_data('mnist')
     models = mlp(input_shape, num_classes), cnn(input_shape, num_classes)
     for model in models:
-        model, history = train(model, data, load_from_weights=False)
-        print(model.predict(data[1][0][0:1]))
+        model, history = train(model, data)
+        single_example = data[1][0][0:1]
+        print(model.predict(single_example))
         if history:
             print(max(history.history['val_categorical_accuracy']))
     
