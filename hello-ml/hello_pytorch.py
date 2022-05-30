@@ -94,7 +94,7 @@ def train(model, dataloader, load_from_weights=False):
                 num_correct += torch.sum(correct_arr).item()
             val_loss = val_loss / BATCH_SIZE
             acc = num_correct / len(testloader.dataset)
-            print(f"Epoch {epoch + 1} train_loss: {train_loss:.3f},  val_Loss: {val_loss:.3F}, accuracy = {acc:.3f}")
+            print(f"Epoch {epoch + 1} train_loss: {train_loss:.3f},  val_Loss: {val_loss:.3F}, accuracy = {acc:.1%}")
         print('Finished Training')
         torch.save(model.state_dict(), 'cnn.pth')
     return model
