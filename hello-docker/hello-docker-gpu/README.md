@@ -1,36 +1,34 @@
-It's not clear what is required to run CUDA/GPUs on docker images. Here are a couple of sets of instructions I was trying to follow:
+# Using GPUs with Docker
 
-https://pytorch.org/elastic/0.2.0/examples.html
-1. Install [Nvidia Container Toolkit](https://github.com/NVIDIA/nvidia-docker)
-2. docker run some-gpu-docker-image (see below)
-Note: The pytorch elastic example contains a good dockerfile
+On WSL, it works right out of the box. Not sure about vanilla Ubuntu.
+1. Run docker as normal and add `--gpus=all` for Docker to access the GPU. Ex:
+    ```
+    $ docker run --rm --gpus=all pytorch/pytorch:1.11.0-cuda11.3-cudnn8-devel nvidia-smi -L
+    GPU 0: NVIDIA GeForce RTX 2080 Ti
+    ```
 
-https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
-Same as above
+If you get an error about nvidia-smi not being found then apt install `nvidia-docker2`.
+1. Setup the package repository and the GPG key:
+    ```
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+    ```
+2. Apt install `nvidia-docker2`:
+    ```
+    sudo apt-get update && sudo apt-get install -y nvidia-docker2
+    ```
 
-https://docs.docker.com/desktop/windows/wsl/#gpu-support
-1. Install some beta drivers for WSL2 GPU Paravirtualization
-2. docker run some-gpu-docker-image
+## Official instructions
 
-https://docs.docker.com/config/containers/resource_constraints/#gpu
-1. Install nvidia-container-runtime
-    1. Add nvidia-container-runtime apt repo (see below)
-    2. apt-get install nvidia-container-runtime
-2. docker run ubuntu and it will have access to gpus
+There is not a great central starting point for instructions on how to use GPUs with Docker. Docker's site has [something](https://docs.docker.com/config/containers/resource_constraints/#gpu), Nvidia's site has a [smattering](https://docs.nvidia.com/ai-enterprise/deployment-guide/dg-docker.html) [of](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#install-guide) [things](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch), and you'll see three conflicting instructions:
+1. Install `nvidia-docker2` and run your GPU container.
+2. Install `nvidia-container-toolkit` and run your GPU container.
+3. Install `nvidia-container-runtime` and run your GPU container.
+There's a full explanation [here](https://github.com/NVIDIA/nvidia-docker/issues/1268), but the bottom line is that you probably only need `nvidia-container-toolkit` but `nvidia-container-runtime` is needed for Kubernetes and for earlier Docker versions, and `nvidia-docker2` contains both so it should just be your default.
 
-
-So far I have simply run nvidia's pytorch image and Cuda worked, and I ran ubuntu and nvidia-smi worked (but it didn't have cuda (nvcc didn't work)). If I run into any problems, my first step will be to install that Nvidia Container Toolkit like they suggested.
-
-
-
-
-## Add nvidia-container-runtime apt repo:
-curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
-  sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
-sudo apt-get update
 
 
 ## GPU-enabled docker images:

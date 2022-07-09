@@ -1,0 +1,91 @@
+anonymousAccessAllowed: false
+canMove: false
+canUnshare: false
+createdAt: 2014-07-22T17:30:42.921+0000
+createdBy:
+  href: https://cad.onshape.com/api/users/53cd7b0ce4b0df4f31ebb282
+  id: 53cd7b0ce4b0df4f31ebb282
+  image: /images/placeholder-user.png
+  name: Dave C
+  state: 1
+createdWithEducationPlan: false
+defaultElementId: null
+defaultWorkspace:
+  href: https://cad.onshape.com/api/documents/d/290a9120f9f249a7a05cfe9c/workspaces/f3d6fe4cfa4f4fd5a956c1f5
+  id: f3d6fe4cfa4f4fd5a956c1f5
+  name: Main
+description: null
+documentLabels: null
+hasReleaseRevisionableObjects: false
+hasRelevantInsertables: false
+href: https://cad.onshape.com/api/documents/290a9120f9f249a7a05cfe9c
+id: 290a9120f9f249a7a05cfe9c
+isContainer: false
+isEnterpriseOwned: false
+isMutable: false
+isOrphaned: false
+jsonType: document-summary
+likedByCurrentUser: false
+likes: 1
+modifiedAt: 2015-09-23T13:22:00.572+0000
+modifiedBy:
+  href: https://cad.onshape.com/api/users/53cd7b0ce4b0df4f31ebb282
+  id: 53cd7b0ce4b0df4f31ebb282
+  image: /images/placeholder-user.png
+  name: Dave C
+  state: 1
+name: Lava Lamp 2
+notRevisionManaged: false
+numberOfTimesCopied: 0
+numberOfTimesReferenced: 0
+owner:
+  acceptOwnershipTransfer: false
+  href: https://cad.onshape.com/api/users/53cd7b0ce4b0df4f31ebb282
+  id: 53cd7b0ce4b0df4f31ebb282
+  image: /images/placeholder-user.png
+  name: Dave C
+  type: 0
+parentId: null
+permission: READ_COPY_EXPORT
+permissionSet:
+- READ
+- LINK
+- COPY
+- EXPORT
+projectId: null
+public: true
+recentVersion: null
+resourceType: document
+supportTeamUserAndShared: false
+tags: []
+thumbnail:
+  href: https://cad.onshape.com/api/thumbnails/d/290a9120f9f249a7a05cfe9c/w/f3d6fe4cfa4f4fd5a956c1f5?t=1406304382290
+  id: null
+  secondarySizes: null
+  sizes:
+  - href: https://cad.onshape.com/api/thumbnails/d/290a9120f9f249a7a05cfe9c/w/f3d6fe4cfa4f4fd5a956c1f5/s/600x340?t=1406304382290
+    mediaType: image/png
+    renderMode: ''
+    sheetName: null
+    size: 600x340
+    uniqueId: null
+    viewOrientation: ''
+  - href: https://cad.onshape.com/api/thumbnails/d/290a9120f9f249a7a05cfe9c/w/f3d6fe4cfa4f4fd5a956c1f5/s/70x40?t=1406304382290
+    mediaType: image/png
+    renderMode: ''
+    sheetName: null
+    size: 70x40
+    uniqueId: null
+    viewOrientation: ''
+  - href: https://cad.onshape.com/api/thumbnails/d/290a9120f9f249a7a05cfe9c/w/f3d6fe4cfa4f4fd5a956c1f5/s/300x170?t=1406304382290
+    mediaType: image/png
+    renderMode: ''
+    sheetName: null
+    size: 300x170
+    uniqueId: null
+    viewOrientation: ''
+totalWorkspacesScheduledForUpdate: 0
+totalWorkspacesUpdating: 0
+trash: false
+trashedAt: null
+userAccountLimitsBreached: false

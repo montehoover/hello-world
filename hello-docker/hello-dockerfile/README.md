@@ -75,7 +75,7 @@
         docker/getting-started         latest    cb90f98fd791   12 days ago    28.8MB
         hello-world                    latest    feb5d9fea6a5   7 months ago   13.3kB
         ```
-    4. Login to Docker Hub through the terminal to save your credentials and be able to push the imeage to your account:
+    4. Login to Docker Hub through the terminal to save your credentials and be able to push the image to your account:
         ```
         $ docker login -u montehoover
         Password:
