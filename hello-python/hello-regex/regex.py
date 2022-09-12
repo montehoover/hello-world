@@ -5,13 +5,13 @@ str = "3 cm"
 
 # Regexes you're interested in:
 numbers = "[0-9]+"    # Use "+" to require at least some numbers
-anything = ".*"
+whitespace = "\s?"    # Use "?" to make the whitespace optional
 letters = "[a-zA-Z]*" # Use "*" to make letters optional
 
 # Use your regexes. Use parentheses to capture groups that you're interested in:
-m = re.match(f"({numbers}){anything}({letters})", str)
-value = m.groups[0]
-units = m.groups[1].lower()
+m = re.search(f"({numbers}){whitespace}({letters})", str)
+value = int(m.groups()[0])
+units = m.groups()[1].lower()
 
 # Now do whatever you want with this:
 print(f"Number: {value}, Units: {units}")
