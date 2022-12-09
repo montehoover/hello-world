@@ -101,3 +101,10 @@ Steps for using docker containers as a dev environment in WSL.
     ![](2022-04-23-16-16-30.png)
 
 10. For how to create a docker image, see [hello-dockerfile](hello-dockerfile/README.md).
+
+### Next steps:
+1. [hello-dockerfile](hello-docker/hello-dockerfile/README.md)  
+2. [hello-docker-volumes](hello-docker/hello-docker-volumes/README.md)  
+3. [hello-docker-dev](hello-docker/hello-docker-dev/README.md)  
+4. [hello-docker-gpu](hello-docker/hello-docker-gpu/README.md)  
+5. [hello-docker-gui](hello-docker/hello-docker-gui/README.md) 

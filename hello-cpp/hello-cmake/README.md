@@ -4,15 +4,29 @@
     cmake version 3.16.3
     ```
 
-2. Call cmake to create the infrastructure required for your system's build engine (`make` for Linux or `msbuild` for Windows). The build engine will ultimately call the compiler. So the workflow ultimately looks like `cmake` -> `make` -> `g++`.  
+2. We will call cmake to create the infrastructure required for your system's build engine (`make` for Linux or `msbuild` for Windows). The build engine will ultimately call the compiler. So the workflow looks like `cmake` -> `make` -> `g++`.  
 Make the build directory, cd into it, and call cmake from there so build artifacts will be stored there. Cmake automatically looks for a file titled `CMakeLists.txt` in the directory you specify.
+    Linux:
     ```
     $ mkdir build && cd build
     $ cmake ..
+    -- The C compiler identification is GNU 9.4.0
+    ...
+    Running on Linux...
+    -- Configuring done
+    -- Generating done
+    -- Build files have been written to: /home/monte/code/hello-world/hello-cpp/hello-cmake/build
+
+    ```
+    Windows:
+    ```
+    > mkdir build; cd build
+    > cmake ..
     -- Building for: Visual Studio 17 2022
     -- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.22000.
     -- The C compiler identification is MSVC 19.32.31332.0
     ...
+    Running on Windows...
     -- Configuring done
     -- Generating done
     -- Build files have been written to: C:/Users/monte/code/hello-world/hello-cpp/hello-cmake/build
@@ -22,6 +36,10 @@ Make the build directory, cd into it, and call cmake from there so build artifac
     Linux:
     ```
     $ make
+    Scanning dependencies of target hello-cmake
+    [ 50%] Building CXX object CMakeFiles/hello-cmake.dir/hello-cmake.cpp.o
+    [100%] Linking CXX executable hello-cmake
+    [100%] Built target hello-cmake
     ```
     
     Windows:
@@ -44,7 +62,7 @@ Make the build directory, cd into it, and call cmake from there so build artifac
 4. Run the executable:
     Linux:
     ```
-    $ hello-cmake
+    $ ./hello-cmake
     hello, cmake
     ```
 

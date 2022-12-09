@@ -47,3 +47,6 @@ hello.obj
 > hello.exe
 hello, world
 ```
+
+### Next steps:
+[hello-headers](hello-cpp/hello-headers/hello_headers.cpp)  
