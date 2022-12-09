@@ -38,13 +38,13 @@
 ## More complicated - files in sibling folders, absolute imports
 
 It's surprisingly hard if you simply have two folders on the same level in a parent folder like this:
-    ```
-        hello_imports/
-        utils/
-            my_util.py
-        scripts/
-            my_script.py
-    ```    
+```
+hello_imports/
+utils/
+    my_util.py
+scripts/
+    my_script.py
+```    
 There is a notion of relative imports in python but you can not simply use a path string with dots like `import "../utils/my_util.py`. Instead you use Python's module notation where you essentially replace slashes with dots and drop the file extensions: `import ..utils.my_util`. However the official PEP8 recommendation is to use absolute imports instead of these relative imports, and the relative imports don't work the way you would expect anyway. (More on [relative imports](#Relative-imports) below.)
 
 How to import my_util.py from my_script.py:
