@@ -13,7 +13,9 @@
     ```
 
 ### Next steps:  
-1. [hello-parse](hello-python/hello-parse/README.md)  
-2. [hello-regex](hello-python/hello-regex/README.md)  
-3. [hello-imports](hello-python/hello-imports/README.md)  
-4. [hello-argparse](hello-python/hello-argparse/README.md)  
+1. [hello-parse](hello-parse/README.md)  
+2. [hello-regex](hello-regex/README.md)  
+3. [hello-imports](hello-imports/README.md)  
+4. [hello-argparse](hello-argparse/README.md)
+5. [hello-deepcopy](hello-deepcopy.ipynb)
+6. [hello-sympy](hello-sympy.ipynb)

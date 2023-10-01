@@ -7,6 +7,7 @@ First steps to get off the ground...
     1.2 [hello-regex](hello-python/hello-regex/README.md)  
     1.3 [hello-imports](hello-python/hello-imports/README.md)  
     1.4 [hello-argparse](hello-python/hello-argparse/README.md)  
+    1.5 [hello-sympy](hello-python/hello-sympy.ipynb)
 
 2. [hello-ml](hello-ml/README.md)  
     2.1 [hello_numpy_pandas](hello-ml/hello_numpy_pandas.ipynb)  
