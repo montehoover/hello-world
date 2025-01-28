@@ -19,18 +19,15 @@ past_key_values = outputs.past_key_values
 
 
 # Demonstrate using a kv_cache and getting out attention scores.
-# Note that we need an attention mask if we are going to pass in a kv_cache
+# Note that even with the kv_cache, we still need to pass in the original input ids.
+# Internally the model uses the kv_cache to avoid recomputing the original attention scores.
 next_input_text = "and lived happily ever "
-next_input_ids = tokenizer(next_input_text, return_tensors="pt").input_ids
-attention_mask = torch.ones_like(input_ids)  # shape: [batch_size, seq_len]
-next_attention_mask = torch.ones_like(next_input_ids)
-combined_attention_mask = torch.cat([attention_mask, next_attention_mask], dim=1)
+new_input_ids = tokenizer(input_text + next_input_text, return_tensors="pt").input_ids
 
 generated_outputs = model.generate(
-    next_input_ids,
+    new_input_ids,
     max_new_tokens=4,
     past_key_values=past_key_values,
-    attention_mask=combined_attention_mask,
     return_dict_in_generate=True,
     output_attentions=True,
 )
