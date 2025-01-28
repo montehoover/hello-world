@@ -14,15 +14,18 @@ input_ids = tokenizer(input_text, return_tensors="pt").input_ids
 with torch.no_grad():
     outputs = model(input_ids, use_cache=True)
 
+# The kv_cache:
 past_key_values = outputs.past_key_values
 
 
-# Pass in more text
-next_input_text = "and lived happily ever"
+# Demonstrate using a kv_cache and getting out attention scores.
+# Note that we need an attention mask if we are going to pass in a kv_cache
+next_input_text = "and lived happily ever "
 next_input_ids = tokenizer(next_input_text, return_tensors="pt").input_ids
 attention_mask = torch.ones_like(input_ids)  # shape: [batch_size, seq_len]
 next_attention_mask = torch.ones_like(next_input_ids)
 combined_attention_mask = torch.cat([attention_mask, next_attention_mask], dim=1)
+
 generated_outputs = model.generate(
     next_input_ids,
     max_new_tokens=4,
@@ -37,3 +40,10 @@ generated_outputs = model.generate(
 generated_ids = generated_outputs.sequences
 generated_text = tokenizer.decode(generated_ids[0])
 print(generated_text)
+
+# Attentions are a list of lists of tensors with the following shape:
+# [new_tokens, n_layers, batch, n_heads, n_next_input_ids, total_input_ids]
+print(generated_outputs.attentions[0][0].shape)
+print(generated_outputs.attentions[1][0].shape)
+print(generated_outputs.attentions[2][0].shape)
+print(generated_outputs.attentions[3][0].shape)
