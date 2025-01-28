@@ -12,7 +12,7 @@ model = AutoModelForCausalLM.from_pretrained(name).eval()
 input_text = "Once upon a time there was a magic dragon and a brave knight. They had many adventures together "
 input_ids = tokenizer(input_text, return_tensors="pt").input_ids
 with torch.no_grad():
-    outputs = model(input_ids, use_cache=True)
+    outputs = model(input_ids)
 
 # The kv_cache:
 past_key_values = outputs.past_key_values
