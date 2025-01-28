@@ -26,7 +26,7 @@ new_input_ids = tokenizer(input_text + next_input_text, return_tensors="pt").inp
 
 generated_outputs = model.generate(
     new_input_ids,
-    max_new_tokens=4,
+    max_new_tokens=10,
     past_key_values=past_key_values,
     return_dict_in_generate=True,
     output_attentions=True,
@@ -42,5 +42,5 @@ print(generated_text)
 # [new_tokens, n_layers, batch, n_heads, n_next_input_ids, total_input_ids]
 print(generated_outputs.attentions[0][0].shape)
 print(generated_outputs.attentions[1][0].shape)
-print(generated_outputs.attentions[2][0].shape)
-print(generated_outputs.attentions[3][0].shape)
+print(generated_outputs.attentions[8][0].shape)
+print(generated_outputs.attentions[9][0].shape)
