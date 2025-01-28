@@ -9,7 +9,7 @@ model = AutoModelForCausalLM.from_pretrained(name).eval()
 
 
 # Pass in text
-input_text = "Once upon a time, in a faraway land, there was a magic dragon and brave knight. They had many adventures together "
+input_text = "Once upon a time there was a magic dragon and a brave knight. They had many adventures together "
 input_ids = tokenizer(input_text, return_tensors="pt").input_ids
 with torch.no_grad():
     outputs = model(input_ids, use_cache=True)
