@@ -5,12 +5,12 @@ import torch
 # Setup model and tokenizer
 name = "gradientai/Llama-3-8B-Instruct-262k"
 tokenizer = AutoTokenizer.from_pretrained(name)
-model = AutoModelForCausalLM.from_pretrained(name).eval()
+model = AutoModelForCausalLM.from_pretrained(name, device_map="auto").eval()
 
 
 # Pass in text
 input_text = "Once upon a time there was a magic dragon and a brave knight. They had many adventures together "
-input_ids = tokenizer(input_text, return_tensors="pt").input_ids
+input_ids = tokenizer(input_text, return_tensors="pt").input_ids.to(model.device)
 with torch.no_grad():
     outputs = model(input_ids)
 
@@ -22,7 +22,7 @@ past_key_values = outputs.past_key_values
 # Note that even with the kv_cache, we still need to pass in the original input ids.
 # Internally the model uses the kv_cache to avoid recomputing the original attention scores.
 next_input_text = "and lived happily ever "
-new_input_ids = tokenizer(input_text + next_input_text, return_tensors="pt").input_ids
+new_input_ids = tokenizer(input_text + next_input_text, return_tensors="pt").input_ids.to(model.device)
 
 generated_outputs = model.generate(
     new_input_ids,
@@ -30,10 +30,12 @@ generated_outputs = model.generate(
     past_key_values=past_key_values,
     return_dict_in_generate=True,
     output_attentions=True,
+    temperature=0.7,
 )
 
 
 # Look at the output
+# generated_outputs = model.generate(input_ids, return_dict_in_generate=True, min_new_tokens=10, max_new_tokens=40, temperature=0.7)
 generated_ids = generated_outputs.sequences
 generated_text = tokenizer.decode(generated_ids[0])
 print(generated_text)
