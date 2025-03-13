@@ -5,7 +5,7 @@ import torch
 # Setup model and tokenizer
 name = "gradientai/Llama-3-8B-Instruct-262k"
 tokenizer = AutoTokenizer.from_pretrained(name)
-model = AutoModelForCausalLM.from_pretrained(name, device_map="auto").eval()
+model = AutoModelForCausalLM.from_pretrained(name, device_map="auto", torch_dtype=torch.bfloat16).eval()
 
 
 # Pass in text
