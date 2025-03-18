@@ -8,6 +8,8 @@ First steps to get off the ground...
     1.3 [hello-imports](hello-python/hello-imports/README.md)  
     1.4 [hello-argparse](hello-python/hello-argparse/README.md)  
     1.5 [hello-sympy](hello-python/hello-sympy.ipynb)
+    1.6 [hello-deepcopy](hello-deepcopy.ipynb)
+    1.6 [hello-async](hello-python/hello-async/README.md)
 
 2. [hello-ml](hello-ml/README.md)  
     2.1 [hello_numpy_pandas](hello-ml/hello_numpy_pandas.ipynb)  
@@ -17,6 +19,8 @@ First steps to get off the ground...
     2.5 [hello_pytorch](hello-ml/hello_pytorch.py)  
     2.6 [hello_data_generation](hello-ml/hello_data_generation.ipynb)  
     2.7 [hello_stacking](hello-ml/hello_stacking.ipynb)  
+    2.8 [hello_autograd](hello-ml/hello_autograd.ipynb)  
+    2.9 [hello_huggingface](hello-ml/hello_huggingface.py)  
 
 3. [hello-cpp](hello-cpp/README.md)  
     2.1 [hello-headers](hello-cpp/hello-headers/hello_headers.cpp)  
