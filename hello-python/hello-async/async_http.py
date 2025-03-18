@@ -6,12 +6,11 @@ def get_response_id(url):
     return response_id
 
 async def async_get_response_id(url):
-    async_client = httpx.AsyncClient()
-    response = await async_client.get(url)
+    response = await httpx.AsyncClient().get(url)
     response_id = response.headers.get("x-amzn-requestid","No Request ID")
-    await async_client.aclose()
     return response_id
-    
+
+
 async def gather_responses(urls):
     tasks = [async_get_response_id(url) for url in urls]
     results = await asyncio.gather(*tasks)
@@ -37,7 +36,7 @@ if __name__=="__main__":
 
     # The key part of async is using an asyncio.gather() call to send multiple async requests at once.
     print("The real reason to use async is to send off multiple requests at once and not have to wait for one to finish before sending the next.")
-    print("Now sending ten http requests that each take two seconds to complete.")
+    print("Now sending 10 http requests that each take 2 seconds to complete.")
     print("Sending them asynchronously so they all complete in about 2 seconds.")
     start = time.time()
     response_ids = asyncio.run(gather_responses([url]*10))
@@ -46,7 +45,7 @@ if __name__=="__main__":
         print(f"Response ID: {id}")
     print(f"Took {end - start:.2f} seconds.\n")
 
-    print("Now sending the same ten requests, but synchronously.")
+    print("Now sending the same 10 requests, but synchronously.")
     print("This takes about 20 seconds because we have to wait for each to return before advancing to the next line of code.")
     start = time.time()
     for url in [url]*10:

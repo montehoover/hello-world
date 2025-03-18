@@ -4,14 +4,23 @@ Run with:
 ```
 python async.py
 ```
+and
+```
+python async_http.py
+```
 
-There are five steps to writing async code:
+## Five Steps To Writing Async Code
+
 1. You must use a prebuilt library that has async functions. Examples:
    ```python
+   import asyncio
+
    asyncio.sleep(0.5)
    ```
    or
    ```python
+   import httpx
+
    httpx.AsyncClient().get("www.google.com")
    ```
 2. Put `await` in front of the async function call.
@@ -20,7 +29,7 @@ There are five steps to writing async code:
    ```
    or
    ```python
-   await httpx.AsyncClient().get("www.google.com")
+   response = await httpx.AsyncClient().get("www.google.com")
    ``` 
    This is special in two ways: First, it is blocking within it's function, so nothing runs after `await` in that function until that line completes.
    Second, it is non-blocking for any other async function outside the definition. `await` is the point in the code where it gives back control to the event loop.
